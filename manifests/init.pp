@@ -3,15 +3,16 @@ package { 'nginx':
     ensure  => installed,
 }
 
-service { 'nginx':
-    ensure  => running,
-    enable  => true,
-    require => Package['nginx'],
-}
-
 file { 'www':
     ensure  => directory,
     path    => '/usr/share/nginx/www',
     source  => '/etc/puppet/private/www',
     recurse => true,
+    require => Package['nginx'],
+}
+
+service { 'nginx':
+    ensure  => running,
+    enable  => true,
+    require => File['www'],
 }
