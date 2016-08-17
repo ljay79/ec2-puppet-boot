@@ -10,7 +10,7 @@ class nginx {
         notify  => Service['nginx'],
     }
 
-    file { '/usr/share/nginx/www':
+    file { '/usr/share/nginx/html':
         ensure  => directory,
         source  => '/etc/puppet/private/www',
         recurse => true,
